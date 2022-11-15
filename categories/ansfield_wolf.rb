@@ -1,6 +1,4 @@
 require "mechanize"
-require "json"
-require "pry"
 require "csv"
 require "active_support/core_ext/enumerable" # compact_blank
 require "active_support/core_ext/string/filters" # squish

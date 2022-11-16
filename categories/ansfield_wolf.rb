@@ -12,8 +12,7 @@ agent = Mechanize.new
 page = agent.get ANSFIELD_URL
 
 books = page.
-        links.
-        select { |link| link.text.to_s =~ /^\s+\d{4}\s+[^(?!Lifetime Achievement)]+/ }.
+        links_with(text: /^\s+\d{4}\s+[^(?!Lifetime Achievement)]+/).
         map { |x| x.text.to_s.split("\n").map(&:squish).compact_blank }.
         uniq
 

@@ -5,9 +5,8 @@ require "active_support/core_ext/enumerable" # compact_blank
 require "active_support/core_ext/object/blank" # blank
 require "active_support/core_ext/string/inflections" # titleize
 
-
 WOMENS_PRIZE_URL = "https://womensprizeforfiction.co.uk/reading-women".freeze
-WOMENS_PRIZE_NAME = "categories/womens_prize_results.csv".freeze
+WOMENS_PRIZE_FILE_NAME = "categories/womens_prize_results.csv".freeze
 
 agent = Mechanize.new
 page = agent.get WOMENS_PRIZE_URL
@@ -74,7 +73,7 @@ books = book_links.inject([]) do |a,(year,links)|
   a
 end
 
-File.open(WOMENS_PRIZE_NAME,"wb") do |f|
+File.open(WOMENS_PRIZE_FILE_NAME,"wb") do |f|
   f.write(CSV.generate_line(%i[year award title author]))
 
   f.write(books.inject([]) do |csv,row|
